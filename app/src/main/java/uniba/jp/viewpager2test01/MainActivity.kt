@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.viewpager2.widget.ViewPager2
 import uniba.jp.viewpager2test01.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,15 +19,15 @@ class MainActivity : AppCompatActivity() {
         lifecycle.addObserver(viewModel)
         binding.lifecycleOwner = this
 
-        binding.viewpager2.adapter = ViewPager2Adapter(listItems())
-    }
+        val listItem = arrayListOf("TEST0", "TEST1", "TEST2", "TEST3", "TEST4", "TEST5")
+        binding.viewpager2.adapter = ViewPager2Adapter(listItem)
 
-    private fun listItems() = arrayListOf(
-            "TEST0",
-            "TEST1",
-            "TEST2",
-            "TEST3",
-            "TEST4",
-            "TEST5"
-    )
+        binding.button1.setOnClickListener {
+            binding.viewpager2.orientation = ViewPager2.ORIENTATION_VERTICAL
+        }
+
+        binding.button2.setOnClickListener {
+            binding.viewpager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        }
+    }
 }
